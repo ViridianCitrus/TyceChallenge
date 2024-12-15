@@ -5,14 +5,15 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import TyceLogo from "../assets/tyce.png";
 
 export const NavBar = () => {
   return (
-    <div className="tw-h-full tw-flex tw-flex-col tw-justify-between tw-pb-5 tw-border tw-border-slate-400 tw-border-solid">
+    <div className="tw-fixed tw-h-full tw-flex tw-flex-col tw-justify-between tw-pb-5 tw-border tw-border-slate-400 tw-border-solid">
       <div>
         <ListItem>
           <ListItemIcon sx={{ justifyContent: "center" }}>
-            <div>✱</div>
+            <img src={TyceLogo} />
           </ListItemIcon>
         </ListItem>
         <ListItem button>

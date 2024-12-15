@@ -29,7 +29,6 @@ export const FileUpload = () => {
 
     Promise.all(fileReadPromises)
       .then((contents) => {
-        //TODO
         setFilesText(contents);
       })
       .catch((error) => {
@@ -39,8 +38,17 @@ export const FileUpload = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept=".txt" multiple onChange={handleFileUpload} />
+    <div className="tw-px-5 tw-py-4 tw-bg-gray-200 tw-rounded-md">
+      <label>
+        Add documents (meeting notes, client briefings) to start a new project
+        <input
+          className="tw-hidden"
+          type="file"
+          accept=".txt"
+          multiple
+          onChange={handleFileUpload}
+        />
+      </label>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </div>
   );

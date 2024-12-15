@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { ChatMessage } from "./ChatMessage";
 
 export const Chat = ({ messages }) => {
