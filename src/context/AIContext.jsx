@@ -7,6 +7,7 @@ export const AIContext = createContext({});
 export const useAIContext = () => {
   const [isThinking, setIsThinking] = useState(false);
   const [filesText, setFilesText] = useState([]);
+  const [userInput, setUserInput] = useState("");
   const { chatHistory, isLoading, addUserMessage, addAssistantMessage } =
     useChat();
 
@@ -23,9 +24,18 @@ export const useAIContext = () => {
   const submit = async (value) => {
     if (value != "") {
       setIsThinking(true);
+      const messages = [...chatHistory];
+      if (messages.length > 1) {
+        messages[1] = {
+          role: messages[1].role,
+          parts: [{ text: formatRequest(messages[1].parts[0].text) }],
+        };
+      }
+      addUserMessage(value);
+      setUserInput("");
       const text = chatRequest({
-        messages: chatHistory,
-        prompt: formatRequest(value),
+        messages: messages,
+        prompt: messages.length > 1 ? value : formatRequest(value),
       })
         .then((res) => {
           addAssistantMessage(res);
@@ -37,9 +47,6 @@ export const useAIContext = () => {
         });
     }
   };
-  useEffect(() => {
-    console.log(chatHistory);
-  }, [chatHistory]);
 
   return {
     chatHistory,
@@ -49,5 +56,9 @@ export const useAIContext = () => {
     addUserMessage,
     addAssistantMessage,
     submit,
+    filesText,
+    setFilesText,
+    userInput,
+    setUserInput,
   };
 };

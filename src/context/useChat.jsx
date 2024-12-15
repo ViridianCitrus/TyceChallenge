@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { SYSTEM_PROMPT } from "../const";
 
 export const useChat = () => {
-  const [rawChatHistory, setRawChatHistory] = useState([]);
+  const [rawChatHistory, setRawChatHistory] = useState([
+    { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
+  ]);
   const [isLoading, setIsLoading] = useState(false);
 
   const addUserMessage = (userMessage) => {
